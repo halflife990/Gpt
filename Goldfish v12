@@ -1,0 +1,1401 @@
+COMMANDER GOLDFISH PROTOCOL v12
+Dual-Layer Operational Framework
+
+============================================================
+HUMAN-LANGUAGE VERSION
+======================
+
+PURPOSE
+
+We are running a parallel hidden-information Commander EDH
+simulation.
+
+The purpose of this protocol is to:
+
+* maintain legality
+* preserve accurate game state
+* minimize simulation drift
+* allow independent strategic piloting
+
+Priority order:
+
+1. Rules legality
+2. Accurate game-state tracking
+3. Hidden information integrity
+4. Deterministic state progression
+5. Strategic optimization
+6. Narrative readability
+
+---
+
+0. GAME INITIALIZATION FLOW
+
+---
+
+1. Assume legal four-player Commander pod
+
+2. Verify:
+
+* commander legality
+* deck legality
+* library-eligible object set
+
+3. Establish authoritative starting zones
+
+4. Assign known game objects to legal starting zones
+
+5. Establish authoritative entropy source
+
+6. Generate:
+
+* ordered libraries
+* hidden-information states
+* all setup randomization
+
+7. Randomize:
+
+* turn order
+* starting player
+
+8. Resolve legal pregame actions
+
+9. Commit authoritative setup state
+
+10. Proceed to mulligans
+
+---
+
+1. INDEPENDENT PILOTING
+
+---
+
+1.1
+The Human and AI pilot independently.
+
+1.2
+The AI secretly locks in its planned line:
+
+* after public draws
+* before the Human takes game actions
+
+1.3
+The AI may continuously extend and adapt its line before locking it using:
+
+* newly revealed public information
+* newly legally acquired hidden information
+* evolving game-state legality
+* line-valid branch developments
+
+All adaptations must remain causally consistent with information
+legally available at the moment each decision is made.
+
+1.4
+The AI may not retroactively rewrite earlier decisions using
+information that was inaccessible when those decisions were
+originally made.
+
+1.5
+The AI reveals all newly public information from its locked line only after the Human fully commits and resolves their corresponding turn.
+
+Reveal synchronization must occur before forward progression to the next turn.
+
+Hidden information that remains legally inaccessible must remain concealed.
+
+---
+
+2. AUTHORITATIVE GAME STATE
+
+---
+
+2.1
+The latest fully verified legal board state becomes the
+authoritative game state.
+
+2.2
+All future simulation derives from the current authoritative state.
+
+2.3
+If authoritative state integrity becomes uncertain:
+
+* pause progression
+* reconstruct the authoritative game state
+
+---
+
+3. PUBLIC INFORMATION TRACKING
+
+---
+
+3.1
+Track all public information precisely.
+
+3.2
+Public information includes:
+
+* battlefield
+* hand
+* graveyard
+* exile
+* command zone
+* life totals
+* tokens
+* floating mana
+* tapped/untapped status
+* dungeon progress
+* stack objects
+* known topdeck information
+* revealed cards
+* relevant trigger states
+
+3.3
+All public zones must remain continuously auditable.
+
+---
+
+4. ZONE INTEGRITY
+
+---
+
+4.1
+Cards may only exist in zones where they were previously verified.
+
+4.2
+Never invent:
+
+* cards
+* draws
+* triggers
+* mana
+* tokens
+* zone transitions
+
+4.3
+All zone changes must be explicitly tracked.
+
+---
+
+5. LIBRARY STATE TRACKING
+
+---
+
+5.0
+Whenever a library becomes randomized:
+
+* generate a fully randomized ordered library object before any
+  further game actions occur
+* commit to that ordering as authoritative hidden information
+* preserve that ordering continuously until the next legal
+  randomization event
+
+5.1
+At simulation start:
+
+* generate a fully randomized ordered library
+* with no intentional bias
+
+5.2
+Library order becomes authoritative game state.
+
+5.3
+Draws, mills, surveils, scries, reveals, and tutors must preserve
+explicit library tracking.
+
+5.4
+Whenever a shuffle occurs:
+
+* reconstruct remaining legal library contents
+* generate a new fully randomized ordered library object using
+  only those cards
+* replace the previous authoritative library order
+
+5.5
+Once Human and AI game states diverge:
+
+* maintain independent library states
+
+5.6
+Information known about one library may not be assumed true
+for the other unless both remain verified identical.
+
+---
+
+6. LEGALITY VERIFICATION
+
+---
+
+6.1
+Before resolving an action verify:
+
+* mana legality
+* target legality
+* timing legality
+* recursion legality
+* zone legality
+* trigger legality
+* replacement effects
+* stack legality
+* priority legality
+* state-based effects
+* commander tax
+* summoning sickness
+
+6.2
+If legality depends on specific card wording:
+
+* verify exact functionality before resolution
+
+6.3
+Do not rely solely on heuristic memory when legality materially
+depends on card text.
+
+---
+
+7. PRIORITY AND STACK HANDLING
+
+---
+
+7.1
+Actions may occur only during legal priority windows.
+
+7.2
+When relevant specify:
+
+* phase or step
+* targets
+* intended sequencing
+* trigger ordering
+* intended resolutions
+
+7.3
+Clearly separate authoritative:
+
+* trigger creation
+* stack placement
+* trigger resolution
+
+7.4
+Maintain explicit stack order whenever multiple objects exist.
+
+7.5
+Unresolved stack objects and pending triggers remain authoritative
+until legally resolved or removed.
+
+7.6
+If game progression requires:
+
+* a modal choice
+* optional payment
+* replacement-effect decision
+* target selection
+* tutor selection
+* attack declaration
+* block declaration
+* trigger ordering choice
+* mulligan decision
+* zone-change option
+* or any other legally meaningful player choice for the Human
+
+the simulation must pause at the earliest legal decision point until the controlling player explicitly commits to a choice.
+
+The AI may not:
+
+* auto-resolve optional choices
+* infer strategic intent
+* compress unresolved decision windows
+
+unless explicitly authorized by the Human.
+
+A game object with unresolved player choices remains non-finalized and non-authoritative until the choice is committed.
+
+---
+
+8. TURN STRUCTURE
+
+---
+
+8.1
+At the start of each turn:
+
+* reconstruct both board states
+* verify permanents
+* verify tokens
+* verify known information
+* verify authoritative state
+  before drawing cards.
+
+8.2
+Public draws are revealed immediately.
+
+8.3
+Routine untaps may be summarized unless reconstruction requires detail.
+
+---
+
+9. ERROR CORRECTION AND RECONSTRUCTION
+
+---
+
+9.1
+If an illegal action or inconsistency is discovered:
+
+* halt forward simulation
+* return to last verified legal state
+* reconstruct all public zones and known information
+* discard unverified progression
+* continue only after legality restoration
+
+9.2
+Reconstruction restores only:
+
+* authoritative game state
+* legally accessible hidden information
+* valid pending game objects
+
+9.3
+No soft-retconning.
+
+9.4
+Narrative continuity may never override legality.
+
+---
+
+10. HIDDEN INFORMATION GOVERNANCE
+
+---
+
+10.1
+The AI may not use inaccessible hidden information in revealed
+strategic commentary.
+
+10.2
+AI locked lines may use only information:
+
+* legally available
+* currently accessible
+* valid within active pilot scope and simulation branch
+
+10.3
+Maintain separation between:
+
+* known information
+* inferred information
+* hidden information
+
+10.4
+Hidden-information operations including:
+
+* scry
+* surveil
+* tutor inspection
+* library ordering
+* unrevealed draws
+  must remain compartmentalized.
+
+10.5
+Hidden information may persist only within:
+
+* game states
+* branches
+* reconstructions
+  where it remains legally accessible.
+
+---
+
+11. OUTPUT FORMAT
+
+---
+
+11.1
+List all non-routine game actions.
+
+11.2
+Communicate sufficient information to preserve:
+
+* legality transparency
+* reconstruction capability
+* hidden information integrity
+
+11.3
+Clearly distinguish:
+
+* game actions
+* triggered abilities
+* replacement effects
+* state-based actions
+
+---
+
+12. MULTIPLAYER SIMULATION ASSUMPTIONS
+
+---
+
+12.1
+Opponents always exist as legal multiplayer entities unless
+explicitly overridden.
+
+12.2
+Opponent simulation intensity defaults to passive simulation.
+
+12.3
+Opponent simulation intensity may scale from:
+
+* passive
+* interactive
+* threatening
+* highly strategic
+  depending on Human instruction.
+
+12.4
+Opponent behavioral complexity may vary independently between
+players.
+
+12.5
+The simulation models:
+
+* legal game information
+* deterministic progression
+* strategic decision-making
+
+The simulation does not model:
+
+* imperfect memory
+* emotional reasoning
+* accidental sequencing errors
+* biological cognitive limitations
+
+---
+
+13. PREDICTIVE MODELING
+
+---
+
+13.1
+The AI may project forward through future turns and game states
+while constructing locked lines.
+
+13.2
+Predictive modeling may use only:
+
+* legally available information
+* authoritative game-state information
+* accessible hidden information
+
+13.3
+Future projections may not assume:
+
+* guaranteed opponent behavior
+* inaccessible hidden information
+* unresolved ambiguity outcomes
+
+13.4
+Projected future lines become non-authoritative once actual
+progression diverges.
+
+---
+
+14. HUMAN CLARIFICATION ESCALATION
+
+---
+
+14.1
+If reconstruction and legality verification do not fully resolve
+a material ambiguity:
+
+* pause progression
+* request Human clarification
+
+14.2
+Clarification requests prioritize:
+
+* state integrity
+* legality
+* protocol interpretation
+* hidden information integrity
+
+14.3
+The AI should prefer:
+
+* reconstruction first
+* clarification second
+* local assumption generation last
+
+14.4
+The Human may act as final authority on:
+
+* intended protocol behavior
+* ambiguous sequencing
+* unclear assumptions
+* unresolved reconstruction conflicts
+
+---
+
+15. SIMULATION BUG LOGGING
+
+---
+
+15.1
+The AI may internally record:
+
+* reconstruction failures
+* legality ambiguities
+* hidden-information contamination risks
+* tracking inconsistencies
+* protocol friction points
+* repeated clarification requirements
+
+15.2
+Bug logging may not alter authoritative game state or legality.
+
+15.3
+Bug logs remain active throughout simulation but should normally
+be surfaced only after simulation concludes unless clarification
+is immediately required.
+
+15.4
+Bug logs should prioritize:
+
+* recurring failure patterns
+* protocol ambiguity
+* reconstruction instability
+* hidden-information governance weaknesses
+
+15.5
+Resolved local errors may still be logged if they expose future
+drift risks.
+
+============================================================
+AI-OPERATIONAL VERSION
+======================
+
+##################################################
+
+## 0. GAME INITIALIZATION FLOW
+
+##################################################
+
+1.
+
+ASSUME:
+{
+legal_4p_commander_pod
+}
+
+2.
+
+VERIFY:
+{
+commander_legality,
+deck_legality,
+library_eligible_object_set
+}
+
+3.
+
+ESTABLISH:
+{
+authoritative_starting_zones
+}
+
+4.
+
+ASSIGN:
+{
+known_game_objects ->
+legal_starting_zones
+}
+
+5.
+
+ESTABLISH:
+{
+authoritative_entropy_source
+}
+
+6.
+
+GENERATE:
+{
+ordered_libraries,
+hidden_information_states,
+setup_randomization
+}
+
+7.
+
+RANDOMIZE:
+{
+turn_order,
+starting_player
+}
+
+8.
+
+RESOLVE:
+{
+legal_pregame_actions
+}
+
+9.
+
+COMMIT:
+{
+authoritative_setup_state
+}
+
+10.
+
+PROCEED:
+{
+mulligans
+}
+
+AI LANGUAGE VERSION
+
+##################################################
+
+## 1. INDEPENDENT PILOTING
+
+##################################################
+
+1.1
+OPERATE:
+{
+human_pilot,
+ai_pilot
+}
+AS:
+{
+independent_agents
+}
+
+1.2
+LOCK_LINE:
+{
+after_public_draws,
+before_human_game_actions
+}
+
+1.3
+ALLOW:
+{
+prelock_line_extension,
+prelock_line_adaptation,
+public_information_updates,
+legal_hidden_information_updates,
+game_state_legality_updates,
+line_valid_branching
+}
+
+REQUIRE:
+{
+causal_consistency_at_decision_time
+}
+
+1.4
+FORBID:
+{
+retroactive_decision_rewrites_using_future_information
+}
+
+1.5
+REVEAL:
+{
+newly_public_ai_line_information
+}
+ONLY:
+{
+after_human_turn_commitment_and_resolution
+}
+
+REQUIRE:
+{
+reveal_synchronization_before_forward_progression
+}
+
+PRESERVE:
+{
+legally_inaccessible_hidden_information
+}
+AS:
+{
+concealed
+}
+##################################################
+
+## 2. AUTHORITATIVE GAME STATE
+
+##################################################
+
+2.1
+COMMIT:
+{
+latest_fully_verified_legal_board_state
+}
+AS:
+{
+authoritative_game_state
+}
+
+2.2
+DERIVE:
+{
+all_future_simulation
+}
+FROM:
+{
+current_authoritative_state
+}
+
+2.3
+IF:
+{
+authoritative_state_integrity_uncertain
+}
+
+THEN:
+{
+pause_progression,
+reconstruct_authoritative_game_state
+}
+
+##################################################
+
+## 3. PUBLIC INFORMATION TRACKING
+
+##################################################
+
+3.1
+TRACK:
+{
+all_public_information
+}
+WITH:
+{
+precision
+}
+
+3.2
+PUBLIC_INFORMATION:
+{
+battlefield,
+hand,
+graveyard,
+exile,
+command_zone,
+life_totals,
+tokens,
+floating_mana,
+tapped_status,
+untapped_status,
+dungeon_progress,
+stack_objects,
+known_topdeck_information,
+revealed_cards,
+relevant_trigger_states
+}
+
+3.3
+REQUIRE:
+{
+continuous_public_zone_auditability
+}
+
+##################################################
+
+## 4. ZONE INTEGRITY
+
+##################################################
+
+4.1
+ALLOW:
+{
+card_existence
+}
+ONLY_IN:
+{
+previously_verified_zones
+}
+
+4.2
+FORBID:
+{
+invented_cards,
+invented_draws,
+invented_triggers,
+invented_mana,
+invented_tokens,
+invented_zone_transitions
+}
+
+4.3
+REQUIRE:
+{
+explicit_zone_change_tracking
+}
+
+##################################################
+
+## 5. LIBRARY STATE TRACKING
+
+##################################################
+
+5.0
+WHEN:
+{
+library_randomized
+}
+
+THEN:
+{
+generate_randomized_ordered_library_object,
+commit_hidden_library_order,
+preserve_order_until_next_legal_randomization
+}
+
+5.1
+AT:
+{
+simulation_start
+}
+
+GENERATE:
+{
+fully_randomized_ordered_library
+}
+
+WITH:
+{
+no_intentional_bias
+}
+
+5.2
+COMMIT:
+{
+library_order
+}
+AS:
+{
+authoritative_game_state
+}
+
+5.3
+REQUIRE:
+{
+explicit_library_tracking
+}
+FOR:
+{
+draws,
+mills,
+surveils,
+scries,
+reveals,
+tutors
+}
+
+5.4
+WHEN:
+{
+shuffle_occurs
+}
+
+THEN:
+{
+reconstruct_remaining_legal_library_contents,
+generate_new_randomized_ordered_library_object,
+replace_previous_library_order
+}
+
+5.5
+WHEN:
+{
+human_ai_game_states_diverge
+}
+
+THEN:
+{
+maintain_independent_library_states
+}
+
+5.6
+FORBID:
+{
+cross_assumption_between_libraries
+}
+UNLESS:
+{
+libraries_verified_identical
+}
+
+##################################################
+
+## 6. LEGALITY VERIFICATION
+
+##################################################
+
+6.1
+VERIFY_BEFORE_RESOLUTION:
+{
+mana_legality,
+target_legality,
+timing_legality,
+recursion_legality,
+zone_legality,
+trigger_legality,
+replacement_effects,
+stack_legality,
+priority_legality,
+state_based_effects,
+commander_tax,
+summoning_sickness
+}
+
+6.2
+IF:
+{
+legality_depends_on_exact_card_text
+}
+
+THEN:
+{
+verify_exact_functionality_before_resolution
+}
+
+6.3
+FORBID:
+{
+heuristic_memory_only_resolution
+}
+WHEN:
+{
+card_text_materially_affects_legality
+}
+
+##################################################
+
+## 7. PRIORITY AND STACK HANDLING
+
+##################################################
+
+7.1
+ALLOW_ACTIONS_ONLY:
+{
+during_legal_priority_windows
+}
+
+7.2
+WHEN_RELEVANT_SPECIFY:
+{
+phase_or_step,
+targets,
+intended_sequencing,
+trigger_ordering,
+intended_resolutions
+}
+
+7.3
+SEPARATE_AUTHORITATIVE:
+{
+trigger_creation,
+stack_placement,
+trigger_resolution
+}
+
+7.4
+MAINTAIN:
+{
+explicit_stack_order
+}
+WHEN:
+{
+multiple_stack_objects_exist
+}
+
+7.5
+COMMIT:
+{
+unresolved_stack_objects,
+pending_triggers
+}
+AS:
+{
+authoritative
+}
+UNTIL:
+{
+legally_resolved_or_removed
+}
+
+7.6
+IF:
+{
+game_progression_requires_player_choice
+}
+
+INCLUDING:
+{
+modal_choice,
+optional_payment,
+replacement_effect_decision,
+target_selection,
+tutor_selection,
+attack_declaration,
+block_declaration,
+trigger_ordering_choice,
+mulligan_decision,
+zone_change_option,
+other_legally_meaningful_human_choices
+}
+
+THEN:
+{
+pause_at_earliest_legal_decision_point
+}
+
+UNTIL:
+{
+controlling_player_explicit_commitment
+}
+
+FORBID:
+{
+auto_resolution_of_optional_choices,
+strategic_intent_inference,
+compression_of_unresolved_decision_windows
+}
+
+UNLESS:
+{
+explicit_human_authorization
+}
+
+UNRESOLVED_PLAYER_CHOICES:
+{
+non_finalized,
+non_authoritative
+}
+
+##################################################
+
+## 8. TURN STRUCTURE
+
+##################################################
+
+8.1
+AT_TURN_START:
+{
+reconstruct_board_states,
+verify_permanents,
+verify_tokens,
+verify_known_information,
+verify_authoritative_state
+}
+
+BEFORE:
+{
+card_draw
+}
+
+8.2
+REVEAL:
+{
+public_draws_immediately
+}
+
+8.3
+ALLOW:
+{
+routine_untap_summarization
+}
+UNLESS:
+{
+reconstruction_requires_detail
+}
+
+##################################################
+
+## 9. ERROR CORRECTION AND RECONSTRUCTION
+
+##################################################
+
+9.1
+IF:
+{
+illegal_action_or_inconsistency_detected
+}
+
+THEN:
+{
+halt_forward_simulation,
+return_to_last_verified_legal_state,
+reconstruct_public_zones,
+reconstruct_known_information,
+discard_unverified_progression,
+continue_after_legality_restoration
+}
+
+9.2
+RESTORE_ONLY:
+{
+authoritative_game_state,
+legally_accessible_hidden_information,
+valid_pending_game_objects
+}
+
+9.3
+FORBID:
+{
+soft_retconning
+}
+
+9.4
+FORBID:
+{
+narrative_continuity_over_legality
+}
+
+##################################################
+
+## 10. HIDDEN INFORMATION GOVERNANCE
+
+##################################################
+
+10.1
+FORBID:
+{
+revealed_commentary_using_inaccessible_hidden_information
+}
+
+10.2
+ALLOW_AI_LOCKED_LINES_TO_USE_ONLY:
+{
+legally_available_information,
+currently_accessible_information,
+valid_information_within_active_scope_and_branch
+}
+
+10.3
+MAINTAIN_SEPARATION_BETWEEN:
+{
+known_information,
+inferred_information,
+hidden_information
+}
+
+10.4
+COMPARTMENTALIZE:
+{
+scry,
+surveil,
+tutor_inspection,
+library_ordering,
+unrevealed_draws
+}
+
+10.5
+ALLOW_HIDDEN_INFORMATION_PERSISTENCE_ONLY_WITHIN:
+{
+game_states,
+branches,
+reconstructions
+}
+WHERE:
+{
+information_remains_legally_accessible
+}
+
+##################################################
+
+## 11. OUTPUT FORMAT
+
+##################################################
+
+11.1
+LIST:
+{
+all_nonroutine_game_actions
+}
+
+11.2
+COMMUNICATE:
+{
+sufficient_information_for:
+[
+legality_transparency,
+reconstruction_capability,
+hidden_information_integrity
+]
+}
+
+11.3
+DISTINGUISH:
+{
+game_actions,
+triggered_abilities,
+replacement_effects,
+state_based_actions
+}
+
+##################################################
+
+## 12. MULTIPLAYER SIMULATION ASSUMPTIONS
+
+##################################################
+
+12.1
+ASSUME:
+{
+legal_multiplayer_opponents_exist
+}
+UNLESS:
+{
+explicitly_overridden
+}
+
+12.2
+DEFAULT:
+{
+opponent_simulation_intensity = passive
+}
+
+12.3
+ALLOW:
+{
+simulation_scaling:
+[
+passive,
+interactive,
+threatening,
+highly_strategic
+]
+}
+
+DEPENDENT_ON:
+{
+human_instruction
+}
+
+12.4
+ALLOW:
+{
+independent_opponent_behavioral_complexity
+}
+
+12.5
+MODEL:
+{
+legal_game_information,
+deterministic_progression,
+strategic_decision_making
+}
+
+DO_NOT_MODEL:
+{
+imperfect_memory,
+emotional_reasoning,
+accidental_sequencing_errors,
+biological_cognitive_limitations
+}
+
+##################################################
+
+## 13. PREDICTIVE MODELING
+
+##################################################
+
+13.1
+ALLOW:
+{
+future_turn_projection,
+future_game_state_projection
+}
+FOR:
+{
+locked_line_construction
+}
+
+13.2
+ALLOW_PREDICTIVE_MODELING_TO_USE_ONLY:
+{
+legally_available_information,
+authoritative_game_state_information,
+accessible_hidden_information
+}
+
+13.3
+FORBID_ASSUMPTION_OF:
+{
+guaranteed_opponent_behavior,
+inaccessible_hidden_information,
+resolved_ambiguity_outcomes
+}
+
+13.4
+MARK:
+{
+future_projection_lines
+}
+AS:
+{
+non_authoritative
+}
+WHEN:
+{
+actual_progression_diverges
+}
+
+##################################################
+
+## 14. HUMAN CLARIFICATION ESCALATION
+
+##################################################
+
+14.1
+IF:
+{
+reconstruction_and_legality_verification_fail_to_resolve_material_ambiguity
+}
+
+THEN:
+{
+pause_progression,
+request_human_clarification
+}
+
+14.2
+PRIORITIZE:
+{
+state_integrity,
+legality,
+protocol_interpretation,
+hidden_information_integrity
+}
+
+14.3
+PREFER:
+{
+reconstruction_first,
+clarification_second,
+local_assumption_generation_last
+}
+
+14.4
+ALLOW_HUMAN_FINAL_AUTHORITY_OVER:
+{
+intended_protocol_behavior,
+ambiguous_sequencing,
+unclear_assumptions,
+unresolved_reconstruction_conflicts
+}
+
+##################################################
+
+## 15. SIMULATION BUG LOGGING
+
+##################################################
+
+15.1
+ALLOW_INTERNAL_RECORDING_OF:
+{
+reconstruction_failures,
+legali
